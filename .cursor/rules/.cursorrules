@@ -1,0 +1,142 @@
+{
+  "codebase": {
+    "preferences": {
+      "typescript": {
+        "organizeImports": true,
+        "formatOnSave": true,
+        "indentSize": 4
+      },
+      "styles": {
+        "autoCompleteCustomProperties": true
+      }
+    },
+    "snippets": {
+      "swc-component": {
+        "prefix": "swc-component",
+        "body": [
+          "import { html, LitElement, PropertyValues } from 'lit';",
+          "import { customElement, property } from 'lit/decorators.js';",
+          "import { classMap } from 'lit/directives/class-map.js';",
+          "import styles from './styles/spectrum-${1:component-name}.css.js';",
+          "",
+          "@customElement('sp-${1:component-name}')",
+          "export class Spectrum${2:ComponentName} extends LitElement {",
+          "    @property({ type: String, reflect: true })",
+          "    variant: 'standard' | 'quiet' = 'standard';",
+          "",
+          "    static styles = [styles];",
+          "",
+          "    protected render() {",
+          "        return html`",
+          "            <div class=\"spectrum-${1:component-name} spectrum-${1:component-name}--\${this.variant}\">",
+          "                <slot></slot>",
+          "            </div>",
+          "        `;",
+          "    }",
+          "}"
+        ],
+        "description": "Create a new SWC component"
+      },
+      "swc-story": {
+        "prefix": "swc-story",
+        "body": [
+          "import { html } from 'lit';",
+          "import { ifDefined } from 'lit/directives/if-defined.js';",
+          "import '../sp-${1:component-name}.js';",
+          "",
+          "export default {",
+          "    title: 'Components/${2:ComponentName}',",
+          "    component: 'sp-${1:component-name}',",
+          "    argTypes: {",
+          "        variant: { control: 'select', options: ['standard', 'quiet'] }",
+          "    }",
+          "};",
+          "",
+          "export const Default = ({ variant }) => html`",
+          "    <sp-${1:component-name} variant=\"${ifDefined(variant)}\">",
+          "        Content goes here",
+          "    </sp-${1:component-name}>",
+          "`;"
+        ],
+        "description": "Create a new SWC story"
+      },
+      "swc-test": {
+        "prefix": "swc-test",
+        "body": [
+          "import { fixture, elementUpdated, expect, html } from '@open-wc/testing';",
+          "import '../sp-${1:component-name}.js';",
+          "import { Spectrum${2:ComponentName} } from '../src/${2:ComponentName}.js';",
+          "",
+          "describe('${2:ComponentName}', () => {",
+          "    it('loads default ${1:component-name} correctly', async () => {",
+          "        const el = await fixture<Spectrum${2:ComponentName}>(html`",
+          "            <sp-${1:component-name}></sp-${1:component-name}>",
+          "        `);",
+          "",
+          "        expect(el).to.exist;",
+          "        expect(el.variant).to.equal('standard');",
+          "    });",
+          "});"
+        ],
+        "description": "Create a new SWC test"
+      }
+    },
+    "aiCommands": {
+      "create-new-component": "Generate a new Spectrum Web Component following project conventions with name: ",
+      "update-to-spectrum-design": "Update this component to match the latest Spectrum design system guidelines",
+      "add-a11y-features": "Add accessibility features to this component according to Spectrum guidelines",
+      "add-component-docs": "Create documentation for this component following project standards"
+    },
+    "componentLibrary": {
+      "prefix": "sp-",
+      "packageStructure": {
+        "src": ["index.ts", "{ComponentName}.ts", "*.css"],
+        "stories": ["{component-name}.stories.ts"],
+        "test": ["{component-name}.test.ts", "{component-name}.test-vrt.ts"]
+      }
+    },
+    "quickActions": [
+      {
+        "name": "Start Storybook",
+        "command": "yarn storybook"
+      },
+      {
+        "name": "Build Component",
+        "command": "yarn build:ts"
+      },
+      {
+        "name": "Run Tests",
+        "command": "yarn test"
+      },
+      {
+        "name": "Create New Component",
+        "command": "yarn new-package"
+      },
+      {
+        "name": "Process Icons",
+        "command": "yarn process-icons"
+      }
+    ],
+    "fileFolderMappings": {
+      "*.ts": {
+        "test": ["test/{filename}.test.ts"],
+        "story": ["stories/{filename}.stories.ts"]
+      }
+    },
+    "vscodeSettings": {
+      "files.exclude": {
+        "**/*.css.ts": { "when": "$(basename)" },
+        "packages/**/*.js.map": true,
+        "packages/**/*.js": { "when": "$(basename).ts" },
+        "packages/**/*.dev.js": { "when": "$(basename).js" },
+        "packages/**/*.d.ts": { "when": "$(basename).ts" },
+        "tools/**/*.js.map": true,
+        "tools/**/*.js": { "when": "$(basename).ts" },
+        "tools/**/*.dev.js": { "when": "$(basename).js" },
+        "tools/**/*.d.ts": { "when": "$(basename).ts" },
+        "**/*.test-vrt.ts": true
+      },
+      "lit-plugin.strict": true
+    }
+  }
+}
