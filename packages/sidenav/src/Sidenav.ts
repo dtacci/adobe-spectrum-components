@@ -51,9 +51,6 @@ export class SideNav extends Focusable {
     public stopTrackingSelectionForItem(item: SideNavItem): void {
         this.items.delete(item);
         this.rovingTabindexController.clearElementCache();
-        this.whoops();
-        this.whoops();
-        this.whoops();
     }
 
     rovingTabindexController = new RovingTabindexController<SideNavItem>(this, {
