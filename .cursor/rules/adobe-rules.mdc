@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Adobe Spectrum Web Components Project Rules
+
+## Commit Messages
+- All commit messages must follow the Conventional Commits format (e.g., feat: add new feature, fix: resolve bug).
+- Breaking changes must be clearly indicated and discussed before merging.
+
+## GitHub Integration
+- Ensure the Cursor GitHub app is installed and configured with write access for all contributors.
+- All contributors must have appropriate GitHub permissions (at least write access) to the repository.
+- Do not use placeholder values (e.g., "YOUR-USERNAME") in configuration files or scripts; always replace with actual values.
+
+## Code Quality
+- All code must pass linting and type checks before merging.
+- All new features and bug fixes must include relevant tests.
+- Avoid code duplication; refactor shared logic into reusable modules or components.
+- Use TypeScript for all source files; avoid using `any` unless necessary and justified.
+
+## Documentation
+- Update documentation for any user-facing changes.
+- Remove unused or deprecated components, features, or documentation promptly.
+
+## Accessibility
+- All UI components must meet accessibility standards (WCAG 2.1 AA or higher).
+
+## Dependency Management
+- Use Yarn for dependency management; do not use npm.
+- Keep dependencies up to date and remove unused packages regularly.
+
+## Generated Files
+- Do not commit generated files (e.g., build artifacts, lock files other than yarn.lock) to the repository.
+
+## Storybook & Documentation
+- After making changes to documentation or Storybook configuration, restart the relevant server unless otherwise specified.
+
+## Naming & Structure
+- Use clear, descriptive names for files, components, and variables.
+- Organize code logically by feature or domain.
+
+## Polyfills
+- Do not add polyfills for unsupported browsers; target only modern browsers as per project requirements.
