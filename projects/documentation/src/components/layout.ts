@@ -297,7 +297,7 @@ export class LayoutElement extends LitElement {
     private get sideNav(): TemplateResult {
         const navContent = html`
             <slot name="logo" slot="logo">
-                <a id="logo" href="index.html">
+                <a id="logo" href="/">
                     <docs-spectrum-logo></docs-spectrum-logo>
                     <h1 class="title">
                         Spectrum
