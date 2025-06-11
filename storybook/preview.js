@@ -128,8 +128,10 @@ export const parameters = {
     },
     layout: 'fullscreen',
     options: {
-        storySort: {
-            method: 'alphabetical-by-kind',
+        storySort: (a, b) => {
+            if (a.title === '_Getting Started with AEM Sites') return -1;
+            if (b.title === '_Getting Started with AEM Sites') return 1;
+            return a.title.localeCompare(b.title);
         },
     },
     badgesConfig: {

@@ -15,6 +15,7 @@ import { merge } from 'webpack-merge';
 /** @type { import('@storybook/web-components-webpack5').StorybookConfig } */
 export default {
     stories: [
+        '../storybook/stories/**/*.mdx',
         '../packages/*/stories/*.stories.js',
         '../tools/*/stories/*.stories.js',
     ],
@@ -29,6 +30,8 @@ export default {
             : []),
         // https://geometricpanda.github.io/storybook-addon-badges/
         '@geometricpanda/storybook-addon-badges',
+        require.resolve('./addons/aem-link/register.js'),
+        require.resolve('./addons/aem-getting-started/panel.jsx'),
     ],
     framework: {
         name: '@storybook/web-components-webpack5',
